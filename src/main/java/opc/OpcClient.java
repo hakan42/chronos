@@ -341,7 +341,7 @@ public class OpcClient implements AutoCloseable {
 	// This is just test code.  Write your own code that sets up your pixel configuration,
 	// animation combinations, and interactions.
 	
-	public static void main(String[] arg) throws Exception {
+	public static void disabled_main(String[] arg) throws Exception {
 		String FC_SERVER_HOST = System.getProperty("fadecandy.server", "raspberrypi.local");
 		int FC_SERVER_PORT = Integer.parseInt(System.getProperty("fadecandy.port", "7890"));
 		int STRIP1_COUNT = Integer.parseInt(System.getProperty("fadecandy.strip1.count", "64"));
