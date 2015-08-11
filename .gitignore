@@ -13,3 +13,7 @@ hs_err_pid*
 
 # Maven droppings
 target
+
+# IntelliJ droppings
+.idea
+*.iml
