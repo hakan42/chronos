@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.gurkensalat.home</groupId>
-    <artifactId>timessquared</artifactId>
+    <artifactId>chronos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <inceptionYear>2015</inceptionYear>
-    <url>http://hakan42.github.com/timessquared/</url>
+    <url>http://hakan42.github.com/chronos/</url>
     <description></description>
 
     <properties>
@@ -31,9 +31,9 @@
     </prerequisites>
 
     <scm>
-        <url>https://github.com/hakan42/timessquared</url>
-        <connection>scm:git:https://github.com/hakan42/timessquared.git</connection>
-        <developerConnection>scm:git:https://github.com/hakan42/timessquared.git</developerConnection>
+        <url>https://github.com/hakan42/chronos</url>
+        <connection>scm:git:https://github.com/hakan42/chronos.git</connection>
+        <developerConnection>scm:git:https://github.com/hakan42/chronos.git</developerConnection>
     </scm>
 
     <issueManagement>
