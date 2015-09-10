@@ -1,0 +1,13 @@
+[Unit]
+Description=Chronos wall clock controller
+After=network.target
+
+[Service]
+User=pi
+RestartSec=30
+Restart=always
+ExecStart=/home/pi/chronos/launcher.sh
+
+[Install]
+WantedBy=multi-user.target
+
