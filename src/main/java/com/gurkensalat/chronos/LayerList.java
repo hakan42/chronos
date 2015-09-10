@@ -1,8 +1,7 @@
 package com.gurkensalat.chronos;
 
-/**
- * Created by hakan on 10.09.15.
- */
-public class LayerList
+import java.util.ArrayList;
+
+public class LayerList extends ArrayList<LedLayer>
 {
 }
