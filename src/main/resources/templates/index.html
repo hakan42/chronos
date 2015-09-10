@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Chronos Clock Overview</title>
+    <title th:text="#{titleprefix} + ': ' + #{main.title}">Chronos Clock: Overview</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -16,7 +16,7 @@
 </div>
 <div class="container">
     <div class="hero-unit">
-        <h2>Chronos Clock Overview</h2>
+        <h2 th:text="#{titleprefix} + ': ' + #{main.title}">Chronos Clock: Overview</h2>
     </div>
 </div>
 
