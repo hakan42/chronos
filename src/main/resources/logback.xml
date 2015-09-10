@@ -27,6 +27,7 @@
     <logger name="org.eclipse" level="info"/>
     <logger name="org.springframework" level="info"/>
     <logger name="com.zaxxer.hikari.pool" level="info"/>
+    <logger name="jndi" level="info"/>
 
     <root level="debug">
         <appender-ref ref="console"/>
