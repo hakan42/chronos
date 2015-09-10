@@ -17,3 +17,7 @@ target
 # IntelliJ droppings
 .idea
 *.iml
+
+# Log files
+env.*_IS_UNDEFINED
+*/env.*_IS_UNDEFINED
