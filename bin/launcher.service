@@ -7,6 +7,7 @@ User=pi
 RestartSec=30
 Restart=always
 ExecStart=/home/pi/chronos/launcher.sh
+StandardOutput=null
 
 [Install]
 WantedBy=multi-user.target
