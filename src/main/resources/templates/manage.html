@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Chronos Clock Overview</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <link href="../static/css/core.css" th:href="@{/css/core.css}" rel="stylesheet" media="screen" />
+</head>
+<body>
+    <div class="header">
+    </div>
+    <div class="container">
+        <div class="hero-unit">
+            <h1>Chronos Clock Overview</h1>
+            <p>
+                Spring-Boot management endpoints
+            </p>
+            <p>
+                <a href="#" th:href="@{properties}" class="btn btn-large btn-success">System Properties</a>
+            </p>
+        </div>
+        <div th:replace="fragments/endpoints :: endpoints">List of Endpoints</div>
+        <footer>
+            <div th:replace="fragments/footer :: footer">Footer stuff</div>
+        </footer>
+    </div>
+</body>
+
+</html>

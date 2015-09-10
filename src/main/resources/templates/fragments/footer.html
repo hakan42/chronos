@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <link href="../../static/css/core.css" th:href="@{/css/core.css}" rel="stylesheet" media="screen" />
+</head>
+<body>
+<div th:fragment="footer">
+    <p/>
+    <ul>
+        <li><a href="#" th:href="@{/}">Overview</a></li>
+        <li><a href="#" th:href="@{/manage/}">Spring-Boot Management links</a></li>
+    </ul>
+</div>
+</body>
+</html>
