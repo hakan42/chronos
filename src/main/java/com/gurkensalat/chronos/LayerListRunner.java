@@ -1,5 +1,6 @@
 package com.gurkensalat.chronos;
 
+import opc.Animation;
 import opc.OpcClient;
 import opc.OpcDevice;
 import opc.PixelStrip;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 @Component
-public class LayerListRunner implements CommandLineRunner, ApplicationListener<ApplicationContextEvent>
+public class LayerListRunner extends Animation implements CommandLineRunner, ApplicationListener<ApplicationContextEvent>
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(LayerListRunner.class);
 
@@ -33,6 +34,7 @@ public class LayerListRunner implements CommandLineRunner, ApplicationListener<A
         OpcClient server = new OpcClient("127.0.0.1", 7890);
         OpcDevice fadecandy = server.addDevice();
         PixelStrip strip = fadecandy.addPixelStrip(0, 60);
+        strip.setAnimation(this);
 
         LOGGER.info("Server config: {}", server.getConfig());
 
@@ -71,6 +73,18 @@ public class LayerListRunner implements CommandLineRunner, ApplicationListener<A
         server.close();
 
         LOGGER.info("Finished my additional runner");
+    }
+
+    @Override
+    public void reset(PixelStrip strip)
+    {
+
+    }
+
+    @Override
+    public boolean draw(PixelStrip strip)
+    {
+        return true;
     }
 
     public void onApplicationEvent(ApplicationContextEvent event)
