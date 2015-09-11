@@ -30,6 +30,8 @@
     <logger name="com.zaxxer.hikari.pool" level="info"/>
     <logger name="jndi" level="info"/>
 
+    <logger name="com.gurkensalat.chronos" level="info"/>
+
     <root level="debug">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
