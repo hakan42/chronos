@@ -1,5 +1,8 @@
 package com.gurkensalat.chronos;
 
+import opc.OpcClient;
+import opc.OpcDevice;
+import opc.PixelStrip;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -10,6 +13,7 @@ import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextStoppedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 @Component
 public class LayerListRunner implements CommandLineRunner, ApplicationListener<ApplicationContextEvent>
@@ -25,14 +29,34 @@ public class LayerListRunner implements CommandLineRunner, ApplicationListener<A
     {
         LOGGER.info("Running my additional runner");
 
+        // TODO make address data configurable
+        OpcClient server = new OpcClient("127.0.0.1", 7890);
+        OpcDevice fadecandy = server.addDevice();
+        PixelStrip strip = fadecandy.addPixelStrip(0, 60);
+
+        LOGGER.info("Server config: {}", server.getConfig());
+
+        LayerList layers = new LayerList();
+        layers.add(new ChaseLayer());
+
         thisThread = Thread.currentThread();
         while (running)
         {
-            LOGGER.info("Doing some work...");
-
             try
             {
-                Thread.sleep(15 * 1000);
+                StopWatch stopWatch = new StopWatch();
+                stopWatch.start();
+                for (LedLayer layer : layers)
+                {
+                    layer.prepare(strip);
+                }
+                stopWatch.stop();
+
+                LOGGER.debug("Preparation of strips took {} msec", stopWatch.getTotalTimeMillis());
+                server.show();
+
+                // Sleep for half a second...
+                Thread.sleep(500);
             }
             catch (InterruptedException ie)
             {
@@ -40,6 +64,11 @@ public class LayerListRunner implements CommandLineRunner, ApplicationListener<A
                 running = false;
             }
         }
+
+        server.clear(); // Set all pixels to black
+        server.show();  // Show the darkened pixels
+
+        server.close();
 
         LOGGER.info("Finished my additional runner");
     }
