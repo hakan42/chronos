@@ -9,8 +9,6 @@ import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.context.event.ContextClosedEvent;
@@ -43,7 +41,7 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
         LOGGER.info("Server config: {}", server.getConfig());
 
         LayerList layers = new LayerList();
-        // layers.add(new ChaseLayer());
+        layers.add(new BaseLayer());
         layers.add(new HourHandLayer());
         layers.add(new MinuteHandLayer());
         layers.add(new SecondHandLayer());
