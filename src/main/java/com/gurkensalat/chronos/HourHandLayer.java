@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 public class HourHandLayer extends AbstractLedLayer implements LedLayer
 {
-    private final static Logger LOGGER = LoggerFactory.getLogger(ChaseLayer.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(HourHandLayer.class);
 
     // TODO make this configurable
     private int hourHandColor = GREEN;
