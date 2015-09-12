@@ -38,6 +38,9 @@
 
         <!-- Frontend stuff -->
         <bootstrap.version>3.3.4</bootstrap.version>
+
+        <!-- Testing -->
+        <junit.version>4.12</junit.version>
     </properties>
 
     <prerequisites>
@@ -155,6 +158,14 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${bootstrap.version}</version>
             </dependency>
+
+            <!-- Testing -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -203,6 +214,13 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
