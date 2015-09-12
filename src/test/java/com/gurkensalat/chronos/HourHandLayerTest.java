@@ -40,7 +40,7 @@ public class HourHandLayerTest
     {
         DateTime now = timeToBeTested.withHourOfDay(0).withMinuteOfHour(0);
         testable.prepare(strip, now);
-        assertEquals(testable.getHourHandPixelNumber(), 0);
+        assertEquals(0, testable.getHourHandPixelNumber());
     }
 
     @Test
@@ -48,7 +48,15 @@ public class HourHandLayerTest
     {
         DateTime now = timeToBeTested.withHourOfDay(12).withMinuteOfHour(0);
         testable.prepare(strip, now);
-        assertEquals(testable.getHourHandPixelNumber(), 0);
+        assertEquals(0, testable.getHourHandPixelNumber());
+    }
+
+    @Test
+    public void testPrepare1330()
+    {
+        DateTime now = timeToBeTested.withHourOfDay(13).withMinuteOfHour(30);
+        testable.prepare(strip, now);
+        assertEquals(7, testable.getHourHandPixelNumber());
     }
 
     @Test
@@ -56,7 +64,7 @@ public class HourHandLayerTest
     {
         DateTime now = timeToBeTested.withHourOfDay(21).withMinuteOfHour(0);
         testable.prepare(strip, now);
-        assertEquals(testable.getHourHandPixelNumber(), 45);
+        assertEquals(45, testable.getHourHandPixelNumber());
     }
 
     @Test
@@ -64,6 +72,14 @@ public class HourHandLayerTest
     {
         DateTime now = timeToBeTested.withHourOfDay(23).withMinuteOfHour(0);
         testable.prepare(strip, now);
-        assertEquals(testable.getHourHandPixelNumber(), 55);
+        assertEquals(55, testable.getHourHandPixelNumber());
+    }
+
+    @Test
+    public void testPrepare2359()
+    {
+        DateTime now = timeToBeTested.withHourOfDay(23).withMinuteOfHour(59);
+        testable.prepare(strip, now);
+        assertEquals(59, testable.getHourHandPixelNumber());
     }
 }

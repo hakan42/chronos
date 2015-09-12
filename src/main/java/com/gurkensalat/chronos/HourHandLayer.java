@@ -23,8 +23,10 @@ public class HourHandLayer extends AbstractLedLayer implements LedLayer
             hour = hour - 12;
         }
 
-        pixelNumber = hour * 5;
-        LOGGER.debug("Now is {} / {} -> pixel is {}", hour, now.getMinuteOfDay(), pixelNumber);
+        int minute = now.minuteOfHour().get();
+
+        pixelNumber = hour * 5 + (int) (minute / 12);
+        LOGGER.debug("Now is {} / {} -> pixel is {}", hour, minute, pixelNumber);
 
 
         strip.setPixelColor(pixelNumber, hourHandColor);
