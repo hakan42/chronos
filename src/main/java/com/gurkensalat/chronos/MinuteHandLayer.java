@@ -10,7 +10,7 @@ public class MinuteHandLayer extends AbstractLedLayer implements LedLayer
     private final static Logger LOGGER = LoggerFactory.getLogger(MinuteHandLayer.class);
 
     // TODO make this configurable
-    private int hourHandColor = BLUE;
+    private int minuteHandColor = BLUE;
 
     // For unit testing...
     private int pixelNumber;
@@ -23,7 +23,7 @@ public class MinuteHandLayer extends AbstractLedLayer implements LedLayer
         LOGGER.debug("Now is {} -> pixel is {}", minute, pixelNumber);
 
 
-        strip.setPixelColor(pixelNumber, hourHandColor);
+        strip.setPixelColor(pixelNumber, minuteHandColor);
     }
 
     // For unit testing...
