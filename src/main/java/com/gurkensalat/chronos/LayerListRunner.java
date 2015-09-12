@@ -47,7 +47,7 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
         layers.add(new SecondHandLayer());
 
         // TODO make time zone configurable
-        DateTimeZone zone = DateTimeZone.forTimeZone(TimeZone.getTimeZone("GMT+1"));
+        DateTimeZone zone = DateTimeZone.forID("Europe/Berlin");
 
         thisThread = Thread.currentThread();
         while (running)
