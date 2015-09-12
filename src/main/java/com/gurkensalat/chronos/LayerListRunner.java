@@ -42,6 +42,7 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
         LayerList layers = new LayerList();
         layers.add(new ChaseLayer());
         layers.add(new HourHandLayer());
+        layers.add(new MinuteHandLayer());
 
         thisThread = Thread.currentThread();
         while (running)
