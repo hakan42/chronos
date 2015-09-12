@@ -40,9 +40,10 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
         LOGGER.info("Server config: {}", server.getConfig());
 
         LayerList layers = new LayerList();
-        layers.add(new ChaseLayer());
+        // layers.add(new ChaseLayer());
         layers.add(new HourHandLayer());
         layers.add(new MinuteHandLayer());
+        layers.add(new SecondHandLayer());
 
         thisThread = Thread.currentThread();
         while (running)

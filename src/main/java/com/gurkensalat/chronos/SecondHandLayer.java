@@ -1,5 +1,6 @@
 package com.gurkensalat.chronos;
 
+import opc.Animation;
 import opc.PixelStrip;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -17,11 +18,15 @@ public class SecondHandLayer extends AbstractLedLayer implements LedLayer
 
     public void prepare(PixelStrip strip, DateTime now)
     {
-        int minute = now.minuteOfHour().get();
+        int second = now.secondOfMinute().get();
 
-        pixelNumber = minute;
-        LOGGER.debug("Now is {} -> pixel is {}", minute, pixelNumber);
+        pixelNumber = second;
 
+        int r = (int)(Math.random() * 256);
+        int g = (int)(Math.random() * 256);
+        int b = (int)(Math.random() * 256);
+
+        secondHandColor = makeColor(r, g, b);
 
         strip.setPixelColor(pixelNumber, secondHandColor);
     }
