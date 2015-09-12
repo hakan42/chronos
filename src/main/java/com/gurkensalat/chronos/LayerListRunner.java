@@ -5,6 +5,7 @@ import opc.OpcClient;
 import opc.OpcDevice;
 import opc.PixelStrip;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,8 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextStoppedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+
+import java.util.TimeZone;
 
 @Component
 public class LayerListRunner extends Animation implements CommandLineRunner, ApplicationListener<ApplicationContextEvent>
@@ -45,6 +48,9 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
         layers.add(new MinuteHandLayer());
         layers.add(new SecondHandLayer());
 
+        // TODO make time zone configurable
+        DateTimeZone zone = DateTimeZone.forTimeZone(TimeZone.getTimeZone("GMT+1"));
+
         thisThread = Thread.currentThread();
         while (running)
         {
@@ -52,7 +58,7 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
             {
                 StopWatch stopWatch = new StopWatch();
                 stopWatch.start();
-                DateTime now = DateTime.now();
+                DateTime now = DateTime.now(zone);
                 for (LedLayer layer : layers)
                 {
                     layer.prepare(strip, now);
