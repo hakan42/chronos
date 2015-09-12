@@ -22,10 +22,10 @@ public class ChaseLayer extends AbstractLedLayer
 
         for (int i = 0; i < 60; i++)
         {
-            int color = Animation.BLACK;
+            int color = BLACK;
             if (i == 0 || i == 15 || i == 30 || i == 45)
             {
-                color = Animation.makeColor(0xff, 0x00, 0x00);
+                color = RED;
             }
             else if (i == currentLed)
             {
