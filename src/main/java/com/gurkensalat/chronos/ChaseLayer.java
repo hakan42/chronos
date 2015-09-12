@@ -2,6 +2,7 @@ package com.gurkensalat.chronos;
 
 import opc.Animation;
 import opc.PixelStrip;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +12,7 @@ public class ChaseLayer implements LedLayer
 
     private static int currentLed = 0;
 
-    public void prepare(PixelStrip strip)
+    public void prepare(PixelStrip strip, DateTime now)
     {
         currentLed++;
         if (currentLed >= 60)

@@ -4,6 +4,7 @@ import opc.Animation;
 import opc.OpcClient;
 import opc.OpcDevice;
 import opc.PixelStrip;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -48,9 +49,10 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
             {
                 StopWatch stopWatch = new StopWatch();
                 stopWatch.start();
+                DateTime now = DateTime.now();
                 for (LedLayer layer : layers)
                 {
-                    layer.prepare(strip);
+                    layer.prepare(strip, now);
                 }
                 stopWatch.stop();
 
