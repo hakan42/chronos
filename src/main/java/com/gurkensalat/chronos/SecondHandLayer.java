@@ -1,13 +1,14 @@
 package com.gurkensalat.chronos;
 
-import opc.Animation;
 import opc.PixelStrip;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+@Qualifier("secondHandLayer")
 public class SecondHandLayer extends AbstractLedLayer implements LedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(SecondHandLayer.class);

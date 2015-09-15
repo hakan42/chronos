@@ -8,7 +8,6 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationContextEvent;
@@ -17,7 +16,7 @@ import org.springframework.context.event.ContextStoppedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
-import java.util.TimeZone;
+import javax.annotation.Resource;
 
 @Component
 public class LayerListRunner extends Animation implements CommandLineRunner, ApplicationListener<ApplicationContextEvent>
@@ -28,17 +27,17 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
 
     private static boolean running = true;
 
-    @Autowired
-    private BaseLayer baseLayer;
+    @Resource(name = "baseLayer")
+    private LedLayer baseLayer;
 
-    @Autowired
-    private HourHandLayer hourHandLayer;
+    @Resource(name = "hourHandLayer")
+    private LedLayer hourHandLayer;
 
-    @Autowired
-    private MinuteHandLayer minuteHandLayer;
+    @Resource(name = "minuteHandLayer")
+    private LedLayer minuteHandLayer;
 
-    @Autowired
-    private SecondHandLayer secondHandLayer;
+    @Resource(name = "secondHandLayer")
+    private LedLayer secondHandLayer;
 
     public void run(String... args) throws Exception
     {
