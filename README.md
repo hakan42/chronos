@@ -1,4 +1,4 @@
-## chronos
+## chronos - Χρόνος - greek god of time
 
 a LED clock controller with REST API
 
@@ -27,4 +27,5 @@ The clock consists mainly of:
 
 ## Links
 
+* https://en.wikipedia.org/wiki/Chronos
 
