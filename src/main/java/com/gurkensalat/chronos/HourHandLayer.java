@@ -4,7 +4,9 @@ import opc.PixelStrip;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HourHandLayer extends AbstractLedLayer implements LedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(HourHandLayer.class);

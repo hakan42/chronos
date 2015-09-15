@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationContextEvent;
@@ -27,6 +28,17 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
 
     private static boolean running = true;
 
+    @Autowired
+    private BaseLayer baseLayer;
+
+    @Autowired
+    private HourHandLayer hourHandLayer;
+
+    @Autowired
+    private MinuteHandLayer minuteHandLayer;
+
+    @Autowired
+    private SecondHandLayer secondHandLayer;
 
     public void run(String... args) throws Exception
     {
@@ -41,10 +53,28 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
         LOGGER.info("Server config: {}", server.getConfig());
 
         LayerList layers = new LayerList();
-        layers.add(new BaseLayer());
-        layers.add(new HourHandLayer());
-        layers.add(new MinuteHandLayer());
-        layers.add(new SecondHandLayer());
+
+        if (baseLayer != null)
+        {
+            layers.add(baseLayer);
+        }
+
+        if (hourHandLayer != null)
+        {
+            layers.add(hourHandLayer);
+        }
+
+        if (minuteHandLayer != null)
+        {
+            layers.add(minuteHandLayer);
+        }
+
+        if (secondHandLayer != null)
+        {
+            layers.add(secondHandLayer);
+        }
+
+        LOGGER.info("Layers: {}", layers);
 
         // TODO make time zone configurable
         DateTimeZone zone = DateTimeZone.forID("Europe/Berlin");
