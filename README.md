@@ -28,4 +28,5 @@ The clock consists mainly of:
 ## Links
 
 * https://en.wikipedia.org/wiki/Chronos
+* Maven generated site, version [0.0.1-SNAPSHOT](/site/0.0.1-SNAPSHOT)
 
