@@ -18,16 +18,29 @@ public class BaseLayer extends AbstractLedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(BaseLayer.class);
 
-    @Value("${chronos.layer.base.red:255}")
-    private int red;
+    // Greenyellow
+    @Value("${chronos.layer.base_main.red:173}")
+    private int red_main;
 
-    @Value("${chronos.layer.base.green:0}")
-    private int green;
+    @Value("${chronos.layer.base_main.green:255}")
+    private int green_main;
 
-    @Value("${chronos.layer.base.blue:0}")
-    private int blue;
+    @Value("${chronos.layer.base_main.blue:47}")
+    private int blue_main;
 
-    private int color = RED;
+    // yellow
+    @Value("${chronos.layer.base_secondary.red:255}")
+    private int red_secondary;
+
+    @Value("${chronos.layer.base_secondary.green:255}")
+    private int green_secondary;
+
+    @Value("${chronos.layer.base_secondary.blue:0}")
+    private int blue_secondary;
+
+    private int color_main = RED;
+
+    private int color_secondary = RED;
 
     public void prepare(PixelStrip strip, DateTime now)
     {
@@ -35,7 +48,11 @@ public class BaseLayer extends AbstractLedLayer
         {
             if (i == 0 || i == 15 || i == 30 || i == 45)
             {
-                strip.setPixelColor(i, color);
+                strip.setPixelColor(i, color_main);
+            }
+            else if (i % 5 == 0)
+            {
+                strip.setPixelColor(i, color_secondary);
             }
             else
             {
@@ -47,20 +64,30 @@ public class BaseLayer extends AbstractLedLayer
     @PostConstruct
     private void calculateColor()
     {
-        color = makeColor(red, green, blue);
+        color_main = makeColor(red_main, green_main, blue_main);
+        color_secondary = makeColor(red_secondary, green_secondary, blue_secondary);
     }
 
     public void save(BufferedWriter writer) throws IOException
     {
         super.save(writer);
 
-        writer.write("chronos.layer.base.red=" + red);
+        writer.write("chronos.layer.base_main.red=" + red_main);
         writer.newLine();
 
-        writer.write("chronos.layer.base.green=" + green);
+        writer.write("chronos.layer.base_main.green=" + green_main);
         writer.newLine();
 
-        writer.write("chronos.layer.base.blue=" + blue);
+        writer.write("chronos.layer.base_main.blue=" + blue_main);
+        writer.newLine();
+
+        writer.write("chronos.layer.base_secondary.red=" + red_secondary);
+        writer.newLine();
+
+        writer.write("chronos.layer.base_secondary.green=" + green_secondary);
+        writer.newLine();
+
+        writer.write("chronos.layer.base_secondary.blue=" + blue_secondary);
         writer.newLine();
 
         writer.newLine();

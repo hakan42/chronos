@@ -18,6 +18,7 @@ public class MinuteHandLayer extends AbstractLedLayer implements LedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(MinuteHandLayer.class);
 
+    // blue
     @Value("${chronos.layer.minutehand.red:0}")
     private int red;
 

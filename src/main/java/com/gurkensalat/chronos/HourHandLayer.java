@@ -18,10 +18,11 @@ public class HourHandLayer extends AbstractLedLayer implements LedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(HourHandLayer.class);
 
-    @Value("${chronos.layer.hourhand.red:0}")
+    // red
+    @Value("${chronos.layer.hourhand.red:255}")
     private int red;
 
-    @Value("${chronos.layer.hourhand.green:255}")
+    @Value("${chronos.layer.hourhand.green:0}")
     private int green;
 
     @Value("${chronos.layer.hourhand.blue:0}")
