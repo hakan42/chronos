@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 @Component
 @Qualifier("baseLayer")
@@ -46,5 +48,21 @@ public class BaseLayer extends AbstractLedLayer
     private void calculateColor()
     {
         color = makeColor(red, green, blue);
+    }
+
+    public void save(BufferedWriter writer) throws IOException
+    {
+        super.save(writer);
+
+        writer.write("chronos.layer.base.red=" + red);
+        writer.newLine();
+
+        writer.write("chronos.layer.base.green=" + green);
+        writer.newLine();
+
+        writer.write("chronos.layer.base.blue=" + blue);
+        writer.newLine();
+
+        writer.newLine();
     }
 }

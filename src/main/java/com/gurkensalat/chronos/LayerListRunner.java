@@ -39,6 +39,8 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
     @Resource(name = "secondHandLayer")
     private LedLayer secondHandLayer;
 
+    private LayerList layers = new LayerList();
+
     public void run(String... args) throws Exception
     {
         LOGGER.info("Running my additional runner");
@@ -51,7 +53,7 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
 
         LOGGER.info("Server config: {}", server.getConfig());
 
-        LayerList layers = new LayerList();
+        layers = new LayerList();
 
         if (baseLayer != null)
         {
@@ -135,5 +137,10 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
             LOGGER.info("Set running to {}", running);
             thisThread.interrupt();
         }
+    }
+
+    public LayerList getLayers()
+    {
+        return layers;
     }
 }

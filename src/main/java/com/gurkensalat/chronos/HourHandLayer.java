@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 @Component
 @Qualifier("hourHandLayer")
@@ -56,10 +58,21 @@ public class HourHandLayer extends AbstractLedLayer implements LedLayer
     private void calculateColor()
     {
         hourHandColor = makeColor(red, green, blue);
+    }
 
-        LOGGER.info("red:   {}", red);
-        LOGGER.info("green: {}", green);
-        LOGGER.info("blue:  {}", blue);
-        LOGGER.info("color: {}", hourHandColor);
+    public void save(BufferedWriter writer) throws IOException
+    {
+        super.save(writer);
+
+        writer.write("chronos.layer.hourhand.red=" + red);
+        writer.newLine();
+
+        writer.write("chronos.layer.hourhand.green=" + green);
+        writer.newLine();
+
+        writer.write("chronos.layer.hourhand.blue=" + blue);
+        writer.newLine();
+
+        writer.newLine();
     }
 }

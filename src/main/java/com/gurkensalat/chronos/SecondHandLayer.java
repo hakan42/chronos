@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 @Component
 @Qualifier("secondHandLayer")
@@ -55,5 +57,21 @@ public class SecondHandLayer extends AbstractLedLayer implements LedLayer
     private void calculateColor()
     {
         secondHandColor = makeColor(red, green, blue);
+    }
+
+    public void save(BufferedWriter writer) throws IOException
+    {
+        super.save(writer);
+
+        writer.write("chronos.layer.secondhand.red=" + red);
+        writer.newLine();
+
+        writer.write("chronos.layer.secondhand.green=" + green);
+        writer.newLine();
+
+        writer.write("chronos.layer.secondhand.blue=" + blue);
+        writer.newLine();
+
+        writer.newLine();
     }
 }
