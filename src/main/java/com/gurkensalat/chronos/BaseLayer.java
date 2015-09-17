@@ -18,11 +18,11 @@ public class BaseLayer extends AbstractLedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(BaseLayer.class);
 
-    // yellow
-    @Value("${chronos.layer.background.red:255}")
+    // black
+    @Value("${chronos.layer.background.red:0}")
     private int red;
 
-    @Value("${chronos.layer.background.green:255}")
+    @Value("${chronos.layer.background.green:0}")
     private int green;
 
     @Value("${chronos.layer.background.blue:0}")
@@ -31,7 +31,7 @@ public class BaseLayer extends AbstractLedLayer
     @Value("${chronos.layer.background.brightness:255}")
     private int brightness;
 
-    private int color = RED;
+    private int color = BLACK;
 
     public void prepare(PixelStrip strip, DateTime now)
     {
