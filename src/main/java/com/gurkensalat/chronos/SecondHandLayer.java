@@ -27,6 +27,9 @@ public class SecondHandLayer extends AbstractLedLayer implements LedLayer
     @Value("${chronos.layer.secondhand.blue:0}")
     private int blue;
 
+    @Value("${chronos.layer.secondhand.brightness:255}")
+    private int brightness;
+
     private int secondHandColor = BLUE;
 
     // For unit testing...
@@ -57,6 +60,7 @@ public class SecondHandLayer extends AbstractLedLayer implements LedLayer
     private void calculateColor()
     {
         secondHandColor = makeColor(red, green, blue);
+        secondHandColor = fadeColor(secondHandColor, brightness);
     }
 
     public void save(BufferedWriter writer) throws IOException
@@ -70,6 +74,9 @@ public class SecondHandLayer extends AbstractLedLayer implements LedLayer
         writer.newLine();
 
         writer.write("chronos.layer.secondhand.blue=" + blue);
+        writer.newLine();
+
+        writer.write("chronos.layer.secondhand.brightness=" + brightness);
         writer.newLine();
 
         writer.newLine();

@@ -28,6 +28,9 @@ public class MinuteHandLayer extends AbstractLedLayer implements LedLayer
     @Value("${chronos.layer.minutehand.blue:255}")
     private int blue;
 
+    @Value("${chronos.layer.minutehand.brightness:255}")
+    private int brightness;
+
     private int minuteHandColor = BLUE;
 
     // For unit testing...
@@ -54,6 +57,7 @@ public class MinuteHandLayer extends AbstractLedLayer implements LedLayer
     private void calculateColor()
     {
         minuteHandColor = makeColor(red, green, blue);
+        minuteHandColor = fadeColor(minuteHandColor, brightness);
     }
 
     public void save(BufferedWriter writer) throws IOException
@@ -67,6 +71,9 @@ public class MinuteHandLayer extends AbstractLedLayer implements LedLayer
         writer.newLine();
 
         writer.write("chronos.layer.minutehand.blue=" + blue);
+        writer.newLine();
+
+        writer.write("chronos.layer.minutehand.brightness=" + brightness);
         writer.newLine();
 
         writer.newLine();

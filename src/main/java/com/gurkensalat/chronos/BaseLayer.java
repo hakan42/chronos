@@ -28,6 +28,9 @@ public class BaseLayer extends AbstractLedLayer
     @Value("${chronos.layer.base_main.blue:47}")
     private int blue_main;
 
+    @Value("${chronos.layer.base_main.brightness:255}")
+    private int brightness_main;
+
     // yellow
     @Value("${chronos.layer.base_secondary.red:255}")
     private int red_secondary;
@@ -37,6 +40,9 @@ public class BaseLayer extends AbstractLedLayer
 
     @Value("${chronos.layer.base_secondary.blue:0}")
     private int blue_secondary;
+
+    @Value("${chronos.layer.base_secondary.brightness:255}")
+    private int brightness_secondary;
 
     private int color_main = RED;
 
@@ -65,7 +71,10 @@ public class BaseLayer extends AbstractLedLayer
     private void calculateColor()
     {
         color_main = makeColor(red_main, green_main, blue_main);
+        color_main = fadeColor(color_main, brightness_main);
+
         color_secondary = makeColor(red_secondary, green_secondary, blue_secondary);
+        color_secondary = fadeColor(color_secondary, brightness_secondary);
     }
 
     public void save(BufferedWriter writer) throws IOException
@@ -81,6 +90,9 @@ public class BaseLayer extends AbstractLedLayer
         writer.write("chronos.layer.base_main.blue=" + blue_main);
         writer.newLine();
 
+        writer.write("chronos.layer.base_main.brightness=" + brightness_main);
+        writer.newLine();
+
         writer.write("chronos.layer.base_secondary.red=" + red_secondary);
         writer.newLine();
 
@@ -88,6 +100,9 @@ public class BaseLayer extends AbstractLedLayer
         writer.newLine();
 
         writer.write("chronos.layer.base_secondary.blue=" + blue_secondary);
+        writer.newLine();
+
+        writer.write("chronos.layer.base_secondary.brightness=" + brightness_secondary);
         writer.newLine();
 
         writer.newLine();

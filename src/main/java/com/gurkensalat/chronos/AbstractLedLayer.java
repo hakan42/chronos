@@ -17,6 +17,11 @@ public abstract class AbstractLedLayer implements LedLayer
 
     public static int BLUE = makeColor(0, 0, 255);
 
+    public static int fadeColor(int color, int brightness)
+    {
+        return Animation.fadeColor(color, brightness);
+    }
+
     public static int makeColor(int red, int green, int blue)
     {
         return Animation.makeColor(red, green, blue);
