@@ -30,6 +30,12 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
     @Resource(name = "baseLayer")
     private LedLayer baseLayer;
 
+    @Resource(name = "mainHoursLayer")
+    private LedLayer mainHoursLayer;
+
+    @Resource(name = "secondaryHoursLayer")
+    private LedLayer secondaryHoursLayer;
+
     @Resource(name = "hourHandLayer")
     private LedLayer hourHandLayer;
 
@@ -58,6 +64,16 @@ public class LayerListRunner extends Animation implements CommandLineRunner, App
         if (baseLayer != null)
         {
             layers.add(baseLayer);
+        }
+
+        if (mainHoursLayer != null)
+        {
+            layers.add(mainHoursLayer);
+        }
+
+        if (secondaryHoursLayer != null)
+        {
+            layers.add(secondaryHoursLayer);
         }
 
         if (hourHandLayer != null)

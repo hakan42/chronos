@@ -7,11 +7,11 @@ import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Before;
 
-public class BaseLayerTest
+public class MainHoursLayerTest
 {
     private PixelStrip strip;
 
-    private BaseLayer testable;
+    private MainHoursLayer testable;
 
     private DateTime timeToBeTested;
 
@@ -23,7 +23,7 @@ public class BaseLayerTest
         OpcDevice fadecandy = server.addDevice();
         strip = fadecandy.addPixelStrip(0, 60);
 
-        testable = new BaseLayer();
+        testable = new MainHoursLayer();
         timeToBeTested = DateTime.now().withMillis(0);
     }
 

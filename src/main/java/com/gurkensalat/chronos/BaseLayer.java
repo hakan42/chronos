@@ -18,91 +18,50 @@ public class BaseLayer extends AbstractLedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(BaseLayer.class);
 
-    // Greenyellow
-    @Value("${chronos.layer.base_main.red:173}")
-    private int red_main;
-
-    @Value("${chronos.layer.base_main.green:255}")
-    private int green_main;
-
-    @Value("${chronos.layer.base_main.blue:47}")
-    private int blue_main;
-
-    @Value("${chronos.layer.base_main.brightness:255}")
-    private int brightness_main;
-
     // yellow
-    @Value("${chronos.layer.base_secondary.red:255}")
-    private int red_secondary;
+    @Value("${chronos.layer.background.red:255}")
+    private int red;
 
-    @Value("${chronos.layer.base_secondary.green:255}")
-    private int green_secondary;
+    @Value("${chronos.layer.background.green:255}")
+    private int green;
 
-    @Value("${chronos.layer.base_secondary.blue:0}")
-    private int blue_secondary;
+    @Value("${chronos.layer.background.blue:0}")
+    private int blue;
 
-    @Value("${chronos.layer.base_secondary.brightness:255}")
-    private int brightness_secondary;
+    @Value("${chronos.layer.background.brightness:255}")
+    private int brightness;
 
-    private int color_main = RED;
-
-    private int color_secondary = RED;
+    private int color = RED;
 
     public void prepare(PixelStrip strip, DateTime now)
     {
         for (int i = 0; i < 60; i++)
         {
-            if (i == 0 || i == 15 || i == 30 || i == 45)
-            {
-                strip.setPixelColor(i, color_main);
-            }
-            else if (i % 5 == 0)
-            {
-                strip.setPixelColor(i, color_secondary);
-            }
-            else
-            {
-                strip.setPixelColor(i, BLACK);
-            }
+            strip.setPixelColor(i, color);
         }
     }
 
     @PostConstruct
     private void calculateColor()
     {
-        color_main = makeColor(red_main, green_main, blue_main);
-        color_main = fadeColor(color_main, brightness_main);
-
-        color_secondary = makeColor(red_secondary, green_secondary, blue_secondary);
-        color_secondary = fadeColor(color_secondary, brightness_secondary);
+        color = makeColor(red, green, blue);
+        color = fadeColor(color, brightness);
     }
 
     public void save(BufferedWriter writer) throws IOException
     {
         super.save(writer);
 
-        writer.write("chronos.layer.base_main.red=" + red_main);
+        writer.write("chronos.layer.background.red=" + red);
         writer.newLine();
 
-        writer.write("chronos.layer.base_main.green=" + green_main);
+        writer.write("chronos.layer.background.green=" + green);
         writer.newLine();
 
-        writer.write("chronos.layer.base_main.blue=" + blue_main);
+        writer.write("chronos.layer.background.blue=" + blue);
         writer.newLine();
 
-        writer.write("chronos.layer.base_main.brightness=" + brightness_main);
-        writer.newLine();
-
-        writer.write("chronos.layer.base_secondary.red=" + red_secondary);
-        writer.newLine();
-
-        writer.write("chronos.layer.base_secondary.green=" + green_secondary);
-        writer.newLine();
-
-        writer.write("chronos.layer.base_secondary.blue=" + blue_secondary);
-        writer.newLine();
-
-        writer.write("chronos.layer.base_secondary.brightness=" + brightness_secondary);
+        writer.write("chronos.layer.background.brightness=" + brightness);
         writer.newLine();
 
         writer.newLine();
