@@ -42,7 +42,7 @@ public class SecondaryHoursLayer extends AbstractLedLayer implements LedLayer
         strip.setPixelColor(20, secondaryHoursColor);
         strip.setPixelColor(25, secondaryHoursColor);
         // 30 is main hour
-        strip.setPixelColor(45, secondaryHoursColor);
+        strip.setPixelColor(35, secondaryHoursColor);
         strip.setPixelColor(40, secondaryHoursColor);
         // 45 is main hour
         strip.setPixelColor(50, secondaryHoursColor);
