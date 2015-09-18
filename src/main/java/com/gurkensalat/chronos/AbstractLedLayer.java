@@ -1,14 +1,17 @@
 package com.gurkensalat.chronos;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import opc.Animation;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
@@ -60,6 +63,34 @@ public abstract class AbstractLedLayer implements LedLayer
         }
 
         return result;
+    }
+
+    public ResponseEntity<String> prepareRESTResponse(int red, int green, int blue, int brightness, int color)
+    {
+        Map<String, Object> userData = new HashMap<String, Object>();
+        userData.put("message", "Set color data...");
+        userData.put("red", red);
+        userData.put("green", green);
+        userData.put("blue", blue);
+        userData.put("brightness", brightness);
+        userData.put("color", color);
+
+        String result = "";
+
+        try
+        {
+            ObjectMapper mapper = new ObjectMapper();
+            // mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            result = mapper.writeValueAsString(userData);
+        }
+        catch (JsonProcessingException jpe)
+        {
+            LOGGER.error("While proving answer...", jpe);
+            result = jpe.getMessage();
+        }
+
+        ResponseEntity<String> entity = new ResponseEntity<String>(result, HttpStatus.OK);
+        return entity;
     }
 
     public void save(BufferedWriter writer) throws IOException
