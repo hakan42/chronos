@@ -6,7 +6,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedWriter;
@@ -14,6 +24,8 @@ import java.io.IOException;
 
 @Component
 @Qualifier("hourHandLayer")
+@RestController
+@RequestMapping("/rest/hourHand")
 public class HourHandLayer extends AbstractLedLayer implements LedLayer
 {
     private final static Logger LOGGER = LoggerFactory.getLogger(HourHandLayer.class);
@@ -56,6 +68,39 @@ public class HourHandLayer extends AbstractLedLayer implements LedLayer
     protected int getHourHandPixelNumber()
     {
         return pixelNumber;
+    }
+
+    @RequestMapping(value = "/color", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public HttpEntity<String> configureColor(@RequestParam(value = "red", required = false) String redParam,
+                                             @RequestParam(value = "green", required = false) String greenParam,
+                                             @RequestParam(value = "blue", required = false) String blueParam)
+    {
+        int i = -1;
+
+        i = colorPart(redParam);
+        if (i != -1)
+        {
+            red = i;
+        }
+
+        i = colorPart(greenParam);
+        if (i != -1)
+        {
+            green = i;
+        }
+
+        i = colorPart(blueParam);
+        if (i != -1)
+        {
+            blue = i;
+        }
+
+        calculateColor();
+
+        ResponseEntity<String> entity = prepareRESTResponse(red, green, blue, brightness, hourHandColor);
+        return entity;
     }
 
     @PostConstruct
