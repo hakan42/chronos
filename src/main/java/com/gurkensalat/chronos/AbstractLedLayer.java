@@ -1,14 +1,21 @@
 package com.gurkensalat.chronos;
 
 import opc.Animation;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
 public abstract class AbstractLedLayer implements LedLayer
 {
+    private final static Logger LOGGER = LoggerFactory.getLogger(AbstractLedLayer.class);
+
     public static int BLACK = makeColor(0, 0, 0);
 
     public static int RED = makeColor(255, 0, 0);
@@ -27,6 +34,34 @@ public abstract class AbstractLedLayer implements LedLayer
         return Animation.makeColor(red, green, blue);
     }
 
+    public int colorPart(String data)
+    {
+        int result = -1;
+        if (isNotEmpty(data))
+        {
+            try
+            {
+                result = Integer.parseInt(data);
+
+                if (result > 255)
+                {
+                    result = -1;
+                }
+
+                if (result < 0)
+                {
+                    result = -1;
+                }
+            }
+            catch (NumberFormatException nfe)
+            {
+                LOGGER.error("While decoding color part {}", data, nfe);
+            }
+        }
+
+        return result;
+    }
+
     public void save(BufferedWriter writer) throws IOException
     {
         writer.write("#");
@@ -38,4 +73,5 @@ public abstract class AbstractLedLayer implements LedLayer
         writer.write("#");
         writer.newLine();
     }
+
 }
