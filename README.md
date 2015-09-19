@@ -12,6 +12,7 @@ to be controllable by my home automation system.
 
 ## Status
 [![Dependency Status](https://www.versioneye.com/user/projects/55fc3343ddc3cf0014000155/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55fc3343ddc3cf0014000155)
+[![Build Status](https://travis-ci.org/hakan42/chronos.svg?branch=master)](https://travis-ci.org/hakan42/chronos)
 
 ## Hardware
 
