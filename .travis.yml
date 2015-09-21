@@ -16,3 +16,6 @@ before_install:
   - echo "</repository>" >> ~/.m2/settings.xml
   - echo "</repositories>" >> ~/.m2/settings.xml
   - echo "</settings>" >> ~/.m2/settings.xml
+
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings ~/.m2/settings.xml
