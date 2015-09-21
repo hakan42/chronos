@@ -1,1 +1,18 @@
 language: java
+
+before_script:
+  - mkdir -p ~/.m2
+  - ls -l ~/.m2
+  - touch ~/.m2/settings.xml
+  - echo "<settings>" >> ~/.m2/settings.xml
+  - echo "<repositories>" >> ~/.m2/settings.xml
+  - echo "<repository>" >> ~/.m2/settings.xml
+  - echo "<id>jboss</id>" >> ~/.m2/settings.xml
+  - echo "<layout>default</layout>" >> ~/.m2/settings.xml
+  - echo "<url>http://repository.jboss.org/nexus/content/groups/public/</url>" >> ~/.m2/settings.xml
+  - echo "<snapshots>" >> ~/.m2/settings.xml
+  - echo "<enabled>false</enabled>" >> ~/.m2/settings.xml
+  - echo "</snapshots>" >> ~/.m2/settings.xml
+  - echo "</repository>" >> ~/.m2/settings.xml
+  - echo "</repositories>" >> ~/.m2/settings.xml
+  - echo "</settings>" >> ~/.m2/settings.xml
