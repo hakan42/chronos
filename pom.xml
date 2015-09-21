@@ -40,6 +40,7 @@
         <!-- Javascript libraries for frontend -->
         <bootstrap.version>3.3.5</bootstrap.version>
         <jquery.version>2.1.4</jquery.version>
+        <spectrum.version>1.7.0</spectrum.version>
 
         <!-- Testing -->
         <junit.version>4.12</junit.version>
@@ -172,6 +173,11 @@
                 <artifactId>jquery</artifactId>
                 <version>${jquery.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>spectrum</artifactId>
+                <version>${spectrum.version}</version>
+            </dependency>
 
             <!-- Testing -->
             <dependency>
@@ -238,6 +244,10 @@
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>jquery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>spectrum</artifactId>
         </dependency>
 
         <!-- Testing -->
