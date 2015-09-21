@@ -1,6 +1,6 @@
 language: java
 
-before_script:
+before_install:
   - mkdir -p ~/.m2
   - ls -l ~/.m2
   - touch ~/.m2/settings.xml
