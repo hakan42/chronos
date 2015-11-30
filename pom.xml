@@ -22,7 +22,7 @@
         <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
         <maven-project-info-reports-plugin.version>2.8.1</maven-project-info-reports-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.19</maven-surefire-plugin.version>
         <fluido-skin.version>1.4</fluido-skin.version>
         <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
 
