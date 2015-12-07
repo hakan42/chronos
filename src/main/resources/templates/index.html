@@ -60,6 +60,12 @@
                 <input type='text' id="secondaryHours" />
             </td>
         </tr>
+        <tr>
+            <td th:text="#{table.save}">Save</td>
+            <td>
+                <input type='submit' id="save" value="Save" th:value="#{table.save}" onclick="saveColors()" />
+            </td>
+        </tr>
     </table>
 
 </div>
@@ -124,6 +130,10 @@
         $.ajax('/rest/' + name + '/color?red=' + tinycolor.toRgb().r);
         $.ajax('/rest/' + name + '/color?green=' + tinycolor.toRgb().g);
         $.ajax('/rest/' + name + '/color?blue=' + tinycolor.toRgb().b);
+    }
+
+    function saveColors() {
+        $.post('/rest/save');
     }
 </script>
 
