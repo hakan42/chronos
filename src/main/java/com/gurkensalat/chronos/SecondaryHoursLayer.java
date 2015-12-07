@@ -121,4 +121,24 @@ public class SecondaryHoursLayer extends AbstractLedLayer implements LedLayer
 
         writer.newLine();
     }
+
+    public int getRed()
+    {
+        return red;
+    }
+
+    public int getBlue()
+    {
+        return blue;
+    }
+
+    public int getGreen()
+    {
+        return green;
+    }
+
+    public int getBrightness()
+    {
+        return brightness;
+    }
 }
