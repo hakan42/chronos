@@ -105,4 +105,23 @@ public abstract class AbstractLedLayer implements LedLayer
         writer.newLine();
     }
 
+    public int getRed()
+    {
+        return -1;
+    }
+
+    public int getBlue()
+    {
+        return -1;
+    }
+
+    public int getGreen()
+    {
+        return -1;
+    }
+
+    public int getBrightness()
+    {
+        return -1;
+    }
 }

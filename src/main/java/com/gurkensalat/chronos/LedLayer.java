@@ -11,4 +11,12 @@ public interface LedLayer
     void prepare(PixelStrip strip, DateTime now);
 
     void save(BufferedWriter writer) throws IOException;
+
+    int getRed();
+
+    int getBlue();
+
+    int getGreen();
+
+    int getBrightness();
 }
