@@ -28,7 +28,104 @@
     <div class="hero-unit">
         <h2 th:text="#{titleprefix} + ': ' + #{main.title}">Chronos Clock: Overview</h2>
     </div>
+
+    <table>
+        <tr>
+            <td th:text="#{table.hours}">Hours</td>
+            <td>
+                <input type='text' id="hourHand" />
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{table.minutes}">Minutes</td>
+            <td>
+                <input type='text' id="minuteHand" />
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{table.seconds}">Seconds</td>
+            <td>
+                <input type='text' id="secondHand" />
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{table.mainHours}">Main Hours</td>
+            <td>
+                <input type='text' id="mainHours" />
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{table.secondaryHours}">Secondary Hours</td>
+            <td>
+                <input type='text' id="secondaryHours" />
+            </td>
+        </tr>
+    </table>
+
 </div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $("#hourHand").spectrum({
+        showInitial: true,
+        color: 'rgb([[${hourHand.red}]], [[${hourHand.green}]], [[${hourHand.blue}]])'
+    });
+
+    $("#hourHand").on('change.spectrum', function(e, tinycolor) {
+        updateColors('hourHand', tinycolor);
+    });
+    /*]]>*/
+
+    /*<![CDATA[*/
+    $("#minuteHand").spectrum({
+        showInitial: true,
+        color: 'rgb([[${minuteHand.red}]], [[${minuteHand.green}]], [[${minuteHand.blue}]])'
+    });
+
+    $("#minuteHand").on('change.spectrum', function(e, tinycolor) {
+        updateColors('minuteHand', tinycolor);
+    });
+    /*]]>*/
+
+    /*<![CDATA[*/
+    $("#secondHand").spectrum({
+        showInitial: true,
+        color: 'rgb([[${secondHand.red}]], [[${secondHand.green}]], [[${secondHand.blue}]])'
+    });
+
+    $("#secondHand").on('change.spectrum', function(e, tinycolor) {
+        updateColors('secondHand', tinycolor);
+    });
+    /*]]>*/
+
+    /*<![CDATA[*/
+    $("#mainHours").spectrum({
+        showInitial: true,
+        color: 'rgb([[${mainHours.red}]], [[${mainHours.green}]], [[${mainHours.blue}]])'
+    });
+
+    $("#mainHours").on('change.spectrum', function(e, tinycolor) {
+        updateColors('mainHours', tinycolor);
+    });
+    /*]]>*/
+
+    /*<![CDATA[*/
+    $("#secondaryHours").spectrum({
+        showInitial: true,
+        color: 'rgb([[${secondaryHours.red}]], [[${secondaryHours.green}]], [[${secondaryHours.blue}]])'
+    });
+
+    $("#secondaryHours").on('change.spectrum', function(e, tinycolor) {
+        updateColors('secondaryHours', tinycolor);
+    });
+    /*]]>*/
+
+    function updateColors(name, tinycolor) {
+        $.ajax('/rest/' + name + '/color?red=' + tinycolor.toRgb().r);
+        $.ajax('/rest/' + name + '/color?green=' + tinycolor.toRgb().g);
+        $.ajax('/rest/' + name + '/color?blue=' + tinycolor.toRgb().b);
+    }
+</script>
 
 <footer>
     <div th:replace="fragments/footer :: footer">Footer stuff</div>
